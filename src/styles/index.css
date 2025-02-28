@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+
+@theme {
+    --radius: 0.6rem;    
+    --text-xs: 0.75rem;
+    --text-white: white;   
+    --space-1: 1rem;
+    --space-5: 0.5rem;
+    --space-6: 2rem;
+    --w-200: 200px;
+    --color-blue-600: #2563eb;
+    --color-grey-500: oklch(0.551 0.027 264.364);
+    --radius-sm: calc(var(--radius) - 4px);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) + 4px);
+    --responsive: 100%;
+    --breakpoint-mobile: 480px; 
+}
+
+body{
+    font-family: "Inter", "Inter Placeholder", sans-serif;
+    background: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+    min-height: 100vh;
+}
+
+.form-activity__weight-label
+{
+    font-size: var(--text-xs);
+    color: var(--text-white);
+    position: absolute;
+    top: 0;
+    right: calc(var(--spacing) * 2);
+    background-color: var(--color-blue-600);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+}
+.form-activity__weight-range
+{
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--text-xs);
+    color: var(--color-grey-500);
+}
+
+.form-activity__sex-options
+{
+    width: var(--w-200);
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: var(--space-1) var(--space-5);
+}
+
+.form-activity__update-chart
+{
+    width: var(--responsive);
+    display: block;
+    border-radius: var(--radius-md);
+    background: var(--color-blue-600);
+    color: var(--text-white);
+    padding: var(--space-1);
+    margin: 1rem auto 2rem;
+}
+
+.form-activity__buttons
+{
+    background: var(--color-blue-600);
+    color: var(--text-white);
+    padding: var(--space-5);
+    border-radius: var(--radius-md);
+    transition: 300ms 150ms var(--ease-in-out);
+}
+.form-activity__buttons:hover
+{
+    transform: scale(1.1) translateY(-0.25rem);
+}
+.form-activity__buttons:first-child
+{
+    margin: 0 1rem 1.2rem 0;
+}
+
+@media screen and (max-width: 430px) {
+    .form-activity__sex-options
+    {
+        width: 140px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
