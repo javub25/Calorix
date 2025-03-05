@@ -1,17 +1,18 @@
-import {Activity} from "@/features/form/components/Activity.tsx"
-import {Pie} from "@/features/chart/components/Pie"
+import {ActivityForm} from "@/features/form/components/ActivityForm"
+import {ActivityPie} from "@/features/chart/components/ActivityPie"
 import { useActivity } from "@/features/form/hooks/useActivity"
+import { usePie } from "@/features/chart/hooks/usePie"
+
 
 export const Section = () => 
 {
     const {activity, setActivity} = useActivity();
+    const {pie, setPie} = usePie();
 
     return (
-        <section className="p-8 flex flex-col md:flex-row gap-8 w-full max-w-4xl mx-auto">
-            <Activity 
-                type={activity} setType={setActivity} 
-            />
-            <Pie type={activity}/>
+        <section className="activity-section__wrapper">
+            <ActivityForm type={activity} setType={setActivity} setPie={setPie}/>
+            <ActivityPie type={activity} data={pie}/>
         </section>
     )
 }

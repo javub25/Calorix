@@ -15,18 +15,14 @@
     --w-200: 200px;
     --color-blue-600: #2563eb;
     --color-grey-500: oklch(0.551 0.027 264.364);
-    --radius-sm: calc(var(--radius) - 4px);
     --radius-md: calc(var(--radius) - 2px);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) + 4px);
     --responsive: 100%;
-    --breakpoint-mobile: 480px; 
+    --flex: flex;
 }
 
 body{
     font-family: "Inter", "Inter Placeholder", sans-serif;
-    background: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
-    min-height: 100vh;
+    background: #5AB1D0;
 }
 
 .form-activity__weight-label
@@ -42,7 +38,7 @@ body{
 }
 .form-activity__weight-range
 {
-    display: flex;
+    display: var(--flex);
     justify-content: space-between;
     font-size: var(--text-xs);
     color: var(--color-grey-500);
@@ -66,6 +62,8 @@ body{
     color: var(--text-white);
     padding: var(--space-1);
     margin: 1rem auto 2rem;
+    overflow: clip;
+    transition: all 0.2s var(--ease-in-out)
 }
 
 .form-activity__buttons
@@ -80,16 +78,38 @@ body{
 {
     transform: scale(1.1) translateY(-0.25rem);
 }
+
 .form-activity__buttons:first-child
 {
     margin: 0 1rem 1.2rem 0;
 }
+.activity-section__wrapper
+{
+    max-width:56rem; 
+    display: var(--flex);
+    flex-direction: row;
+    margin: auto;
+    padding: var(--space-6);
+    gap: var(--space-6);
+}
 
-@media screen and (max-width: 430px) {
+/*Mobile*/
+@media screen and (max-width: 480px) {
     .form-activity__sex-options
     {
         width: 140px;
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    .activity-form__header
+    {
+        width:var(--responsive);
+    }
 }
+/*Tablets*/
+@media screen and (max-width: 800px) {
+    .activity-section__wrapper {
+      max-width: var(--responsive);
+      flex-direction: column;
+    }
+  }
 
