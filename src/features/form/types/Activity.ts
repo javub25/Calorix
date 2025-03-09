@@ -1,4 +1,6 @@
 import { PieData} from "@/features/chart/types/Pie";
+import {FieldError} from "@/features/form/hooks/useFormData.ts"
+
 export type FormData = {
     sex: string;
     weight: number;
@@ -26,3 +28,7 @@ export type SportIntensityType = {
     }
 }
 
+export type RequiredProps = {
+    hasError: FieldError | undefined,
+    isSubmitted: boolean
+}
