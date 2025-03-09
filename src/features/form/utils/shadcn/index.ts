@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardDescription, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {Toaster} from "@/components/ui/sonner"
 
 
 export {
@@ -14,5 +15,6 @@ export {
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue
+    SelectValue,
+    Toaster
 }
