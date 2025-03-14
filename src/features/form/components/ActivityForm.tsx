@@ -17,7 +17,7 @@ import { changeGender } from "@/features/form/utils/gender/changeGender.ts"
 import { isGenderSelected } from "@/features/form/utils/gender/isGenderSelected.ts"
 import { getCurrentWeight } from "@/features/form/utils/weight/getCurrentWeight.ts"
 import { getCalories } from "@/features/form/utils/calories/getCalories"
-import { updatePie } from "@/features/chart/utils/updatePie.ts"
+import { updatePie } from "@/features/chart/utils/pie/updatePie"
 
 import { getSubmitFeedback } from "@/features/form/utils/SubmitFeedback/getSubmitFeedback"
 import { RequiredStatus } from "@/features/form/components/RequiredStatus"
