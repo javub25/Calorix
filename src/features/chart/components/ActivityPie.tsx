@@ -2,18 +2,18 @@ import {
     Card, CardContent, CardDescription, CardHeader, CardTitle
 } from "@/features/form/utils/shadcn/index.ts"
 
-
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend} from "recharts"
 import { getCurrentDate } from "@/features/chart/utils/getCurrentDate.ts";
 import { PieProps } from "@/features/chart/types/Pie.ts"
 import {SportMetrics} from "@/features/chart/components/SportMetrics"
+import { useLocalStorage } from "@/features/chart/hooks/useLocalStorage.ts"
+import { PieColors } from "@/features/chart/data/PieColors.ts";
 
 export const ActivityPie = (props: PieProps) => 
 {
     const {type, data} = props;
     const {today, currentYear, currentMonth, currentWeek } = getCurrentDate();
-
-    const COLORS = ['#2563eb', '#00C49F', '#FFBB28', '#FF8042', '#8884D8']
+    const {pie} = useLocalStorage(data);
     
     return (
         <>
@@ -26,39 +26,39 @@ export const ActivityPie = (props: PieProps) =>
                     </CardDescription>
                 </CardHeader>
                      
-                <CardContent className="pb-0 h-[450px]">
-                    {data.length!==0 ?  
-                           <SportMetrics data={data}/>
+                <CardContent className="pb-0">
+                    {pie.length!==0 ?  
+                           <SportMetrics data={pie}/>
                         : null
-                    }    
+                    }
 
-                    <ResponsiveContainer width="100%" height="100%">
-                        <PieChart>
-                            <Pie
-                                data={data}
-                                cx="50%"
-                                cy="30%"
-                                outerRadius={80}
-                                dataKey="hours"
-                                nameKey="sport"
-                                stroke="none">
+                    <div className="h-64 mt-4">
+                        <ResponsiveContainer width="100%" height="100%">
+                            <PieChart>
+                                <Pie
+                                    data={pie}
+                                    cx="50%"
+                                    cy="40%"
+                                    outerRadius={70}
+                                    dataKey="hours"
+                                    nameKey="sport"
+                                    stroke="none">
 
-                                {data.map((_entry, index) => (
-                                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                ))}
-                            </Pie>
+                                    {pie.map((_entry, index) => (
+                                      <Cell key={`cell-${index}`} fill={PieColors[index % PieColors.length]} />
+                                    ))}
+                                </Pie>
 
-                            <Legend 
-                                layout="horizontal"                                
-                                iconType="square"
-                                wrapperStyle={{marginTop:"5rem"}}
-                                verticalAlign="middle" 
-                                align="center"
-                            />
-                        </PieChart>
-                    </ResponsiveContainer>
-
-                            
+                                <Legend 
+                                    layout="horizontal"                                
+                                    iconType="circle"
+                                    wrapperStyle={{marginTop:"5rem"}}
+                                    verticalAlign="middle" 
+                                    align="center"
+                                />
+                            </PieChart>
+                        </ResponsiveContainer>
+                    </div> 
                 </CardContent>
             </Card>
         </>
