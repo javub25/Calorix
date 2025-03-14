@@ -18,7 +18,8 @@
     --radius-md: calc(var(--radius) - 2px);
     --responsive: 100%;
     --flex: flex;
-    --color-red: red
+    --color-red: red;
+    --space-auto: auto;
 }
 
 body{
@@ -54,7 +55,7 @@ body{
     padding: var(--space-1) var(--space-5);
 }
 
-.form-activity__update-chart
+.form-activity__update-chart, .pie-weight__loss-trigger
 {
     width: var(--responsive);
     display: block;
@@ -65,6 +66,30 @@ body{
     margin: 1rem auto 2rem;
     overflow: clip;
     transition: all 0.2s var(--ease-in-out)
+}
+
+.form-activity__update-chart
+{
+    margin: 1rem auto 2rem;
+}
+
+.pie-weight__loss-trigger
+{
+    margin: 2rem auto 0rem;
+}
+.pie-weight__loss-title
+{
+    font-size: 2rem;
+}
+.pie-weight__loss-data
+{
+    width: 35rem;
+    margin: var(--space-auto);
+    padding: var(--space-5) var(--space-6);
+}
+.pie-weight__loss-data > li
+{
+    margin: var(--space-5) 0;
 }
 
 .form-activity__buttons
@@ -89,7 +114,7 @@ body{
     max-width:56rem; 
     display: var(--flex);
     flex-direction: row;
-    margin: auto;
+    margin: var(--space-auto);
     padding: var(--space-6);
     gap: var(--space-6);
 }
@@ -100,13 +125,13 @@ body{
 }
 
 /*Mobile*/
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 580px) {
     .form-activity__sex-options
     {
         width: 140px;
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .activity-form__header
+    .activity-form__header, .pie-weight__loss-data
     {
         width:var(--responsive);
     }
@@ -117,4 +142,4 @@ body{
       max-width: var(--responsive);
       flex-direction: column;
     }
-  }
+}
