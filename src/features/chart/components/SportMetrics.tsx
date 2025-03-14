@@ -3,20 +3,25 @@ import {
     Select, SelectContent, SelectItem, SelectTrigger, SelectValue
 } from "@/features/form/utils/shadcn/index.ts"
 import { PieData } from "@/features/chart/types/Pie";
-import { getSportMetrics } from "@/features/chart/utils/getSportMetrics";
 import ActivityIcon from "@/assets/svg/activity.svg"
 import TimeIcon from "@/assets/svg/time.svg"
 import CaloriesIcon from "@/assets/svg/calories.svg"
 import MenIcon from "@/assets/svg/men.svg"
 import WomenIcon from "@/assets/svg/women.svg"
+import { WeightLoss } from "@/features/chart/components/WeightLoss.tsx";
+import { getWeightLoss } from "@/features/chart/utils/sport/getWeightLoss.ts";
+import {getMetrics} from "@/features/chart/utils/sport/getMetrics.ts";
 
 export const SportMetrics = ({data}: {data: PieData}) => 
 {
     const [sportName, setSportName] = useState<string>("");
 
-    const {metrics} = getSportMetrics({sportName, data});
+    const {metrics} = getMetrics({sportName, data});
 
-    const {sport, hours, calories} = metrics || {}
+    const {sport, hours, calories} = metrics;
+
+    const {weightLoss} = getWeightLoss(calories);
+
 
     return (
         <>
@@ -37,7 +42,7 @@ export const SportMetrics = ({data}: {data: PieData}) =>
                 </SelectContent>
             </Select>
 
-            {metrics ? 
+            {sport ? 
                 <>
                     <div className="pt-8 grid grid-cols-3 items-center place-items-center w-[250px]">
                         <div>
@@ -56,6 +61,10 @@ export const SportMetrics = ({data}: {data: PieData}) =>
                 </>
                 : null            
             }
+            
+            {weightLoss ? 
+                <WeightLoss weightAmount={weightLoss} calories={calories}/>
+            : null}
         </>
     )
 }
