@@ -20,11 +20,16 @@
     --flex: flex;
     --color-red: red;
     --space-auto: auto;
+    --two-columns: repeat(2, minmax(0, 1fr));
+    --one-column: repeat(1, minmax(0, 1fr));
+    --content-center: center;
+    --content-block: block;
+    --content-hidden: none;
 }
 
 body{
     font-family: "Inter", "Inter Placeholder", sans-serif;
-    background: #5AB1D0;
+    background: #BAE6FD;
 }
 
 .form-activity__weight-label
@@ -58,7 +63,7 @@ body{
 .form-activity__update-chart, .pie-weight__loss-trigger
 {
     width: var(--responsive);
-    display: block;
+    display: var(--content-block);
     border-radius: var(--radius-md);
     background: var(--color-blue-600);
     color: var(--text-white);
@@ -111,17 +116,52 @@ body{
 }
 .activity-section__wrapper
 {
-    max-width:56rem; 
-    display: var(--flex);
-    flex-direction: row;
+    max-width:32rem; 
     margin: var(--space-auto);
-    padding: var(--space-6);
-    gap: var(--space-6);
+    padding: var(--space-5);    
 }
 .form-activity__message-errors
 {
     font-size: var(--text-xs);
     color: var(--color-red);
+}
+.site-header__list
+{
+    display: var(--flex);
+    color: var(--text-white);
+    justify-content: space-between;
+    column-gap: 31px;
+}
+
+.site-header__menu 
+{
+    position: sticky;
+    z-index: 10;
+    top:0;
+    background: rgba(30, 90, 113, 0.8);
+}
+
+
+footer {
+    background: #1E5A71;
+    width: var(--responsive);
+    font-size: .875rem;
+    line-height: 1.25rem;
+    display:var(--flex);
+    justify-content: var(--content-center);
+}
+
+.footer-title 
+{
+    margin-bottom: var(--space-5);
+    font-weight: 600;
+    color: var(--text-white);
+    text-align: var(--content-center);
+}
+
+.navbar__mobile
+{
+    display:var(--content-hidden);
 }
 
 /*Mobile*/
@@ -131,15 +171,35 @@ body{
         width: 140px;
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+    .pie-weight__loss-trigger
+    {
+        font-size: var(--text-sm);
+    }
+
     .activity-form__header, .pie-weight__loss-data
     {
         width:var(--responsive);
     }
+    .navbar__mobile
+    {
+        display:var(--content-block);
+    }
+    .site-header__list
+    {
+        display:var(--content-hidden);
+    }
+    .activity-section__wrapper {
+        max-width: var(--responsive);
+    }
 }
 /*Tablets*/
 @media screen and (max-width: 800px) {
-    .activity-section__wrapper {
-      max-width: var(--responsive);
-      flex-direction: column;
+    .footer-info
+    {
+        text-align:var(--content-center);
+    }
+    .footer-info > img
+    {
+        margin:var(--space-auto);
     }
 }
