@@ -8,7 +8,7 @@ import Men from "@/assets/svg/men.svg"
 import WeightIcon from "@/assets/svg/weight.svg"
 import ActivityIcon from "@/assets/svg/activity.svg"
 
-import { FormData, ActivityProps } from "@/features/form/types/Activity.ts"
+import { FormData } from "@/features/form/types/Activity.ts"
 import { useSelectedGender } from "@/features/form/hooks/useSelectedGender.ts"
 import { useWeight } from "@/features/form/hooks/useWeight.ts"
 import { useFormData} from "@/features/form/hooks/useFormData.ts"
@@ -22,10 +22,12 @@ import { updatePie } from "@/features/chart/utils/pie/updatePie"
 import { getSubmitFeedback } from "@/features/form/utils/SubmitFeedback/getSubmitFeedback"
 import { RequiredStatus } from "@/features/form/components/RequiredStatus"
 import { SubmitNotification } from "@/features/form/components/SubmitNotification"
+import { useActivityContext} from "@/contexts/Activity-context";
 
-export const ActivityForm = (props: ActivityProps) => 
+const ActivityForm = () => 
 {
-    const {type, setType, setPie} = props
+    const {type, setType, setPie} = useActivityContext();
+    
     const {SelectedGender, setSelectedGender} = useSelectedGender();
     const {weight, setWeight, weightRef} = useWeight();
     const {register, handleSubmit, Controller, control, errors, isSubmitted} = useFormData();
@@ -45,14 +47,13 @@ export const ActivityForm = (props: ActivityProps) =>
 
     return (
         <>
-            <Card>
+            <Card className="activity-section__wrapper">
                 <CardHeader>
                     <div className="activity-form__header flex justify-evenly items-center w-[390px] mx-auto">
                         <img src={ActivityIcon} alt="Activity Icon" className="w-7 h-7 align-top" />
                         <CardTitle className="text-center text-xl text-wrap">Registra tu actividad deportiva</CardTitle>
                     </div>
                 </CardHeader>
-
 
                 <CardContent>
                     <header className="py-2">
@@ -246,4 +247,4 @@ export const ActivityForm = (props: ActivityProps) =>
         </>
     )
 }
-
+export default ActivityForm

@@ -1,4 +1,4 @@
-import { FormData, ActivityProps } from "@/features/form/types/Activity";
+import { FormData, ContextType } from "@/features/form/types/Activity";
 
 export type PieType = Pick<FormData, "sex" | "sport"> & {
     hours: number,
@@ -6,11 +6,6 @@ export type PieType = Pick<FormData, "sex" | "sport"> & {
 };
 export type PieData = PieType[];
 
-export type PieProps = Pick<ActivityProps, "type"> & {
-    data: PieData
-};
-
-export type UpdatePie = {
-    newActivity: PieType;
-    setPie: (updater: (currentActivity: PieData) => PieData) => void
+export type UpdatePie = Pick<ContextType, "setPie"> & {
+    newActivity: PieType
 }

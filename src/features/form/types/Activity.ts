@@ -10,15 +10,13 @@ export type FormData = {
     minuts: number;
 }
 
-export type ActivityProps = {
+export type ContextType = {
     type: string;
     setType: (type: string) => void;
     setPie: (updater: (oldSport: PieData) => PieData) => void;
-
+    data: PieData;
 }
-
-  
-export type ActivityType = Pick<ActivityProps, "type" | "setType">
+export type ActivityType = Pick<ContextType, "type" | "setType">
 
 export type SportIntensityType = {
     [key: string]: {

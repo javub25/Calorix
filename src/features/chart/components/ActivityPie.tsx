@@ -4,25 +4,26 @@ import {
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend} from "recharts"
 import { getCurrentDate } from "@/features/chart/utils/getCurrentDate.ts";
-import { PieProps } from "@/features/chart/types/Pie.ts"
 import {SportMetrics} from "@/features/chart/components/SportMetrics"
 import { useLocalStorage } from "@/features/chart/hooks/useLocalStorage.ts"
 import { PieColors } from "@/features/chart/data/PieColors.ts";
+import { useActivityContext} from "@/contexts/Activity-context";
 
-export const ActivityPie = (props: PieProps) => 
+const ActivityPie = () => 
 {
-    const {type, data} = props;
-    const {today, currentYear, currentMonth, currentWeek } = getCurrentDate();
+    const {type, data} = useActivityContext();
     const {pie} = useLocalStorage(data);
+    const {today, currentYear, currentMonth, currentWeek } = getCurrentDate();
     
     return (
         <>
-            <Card className="w-full">
+            <Card className="activity-section__wrapper">
                 <CardHeader>
                     <CardTitle className="text-center text-xl">Actividad {type}</CardTitle>
-                    <CardDescription className="py-4">
-                        📅 {type === "Semanal" ? `Semana ${currentWeek} ` : `${today} `} 
-                            de {currentMonth} del {currentYear} 
+                    <CardDescription className="py-4 text-black">
+                        <img src="https://res.cloudinary.com/dye4ylysz/image/upload/v1742827031/calendar_ybsh6h.svg" alt="Calendar icon" 
+                            className="w-6 h-6 inline mr-2 mb-1" />
+                        {type === "Semanal" ? `Semana ${currentWeek} ` : `${today} `} de {currentMonth} del {currentYear} 
                     </CardDescription>
                 </CardHeader>
                      
@@ -64,3 +65,4 @@ export const ActivityPie = (props: PieProps) =>
         </>
     )
 }
+export default ActivityPie;
