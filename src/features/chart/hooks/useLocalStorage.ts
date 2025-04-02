@@ -1,33 +1,29 @@
 import {useEffect} from "react";
-import { PieData } from '@/features/chart/types/Pie.ts';
-import {usePie} from "@/features/chart/hooks/usePie.ts";
+import { LocalStorageType } from '@/features/chart/types/Pie.ts';
 import { updatePie } from "@/features/chart/utils/pie/updatePie";
 import { getCurrentStorage } from '@/features/chart/utils/localStorage/getCurrentStorage.ts';
 import { updateStorage } from '@/features/chart/utils/localStorage/updateStorage.ts';
 import { getNewActivity } from "@/features/chart/utils/pie/getNewActivity.ts";
 
-export const useLocalStorage = (pieItems: PieData) => {
+export const useLocalStorage = ({pie, setPie}: LocalStorageType) => {
 
     const {currentPie} = getCurrentStorage();
-    const {pie, setPie} = usePie();
-
+    const {newActivity} = getNewActivity(pie);
+    
     useEffect(() => 
     {
         setPie(currentPie);
     }, []);
-
+    
     useEffect(() => 
     {
-        if(pieItems.length > 0) {
-            const {newActivity} = getNewActivity(pieItems);
+        if(newActivity) {
             updatePie({newActivity, setPie});
         }
-    }, [pieItems]);
+    }, [newActivity]);
 
     useEffect(() => 
     {
         updateStorage({pie});
-    }, [pie]);
-
-    return {pie};
+    }, [pie])
   };
