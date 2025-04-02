@@ -8,13 +8,13 @@ import {SportMetrics} from "@/features/chart/components/SportMetrics"
 import { useLocalStorage } from "@/features/chart/hooks/useLocalStorage.ts"
 import { PieColors } from "@/features/chart/data/PieColors.ts";
 import { useActivityContext} from "@/contexts/Activity-context";
+import { ActivityDeletion } from "./ActivityDeletion";
 
 const ActivityPie = () => 
 {
-    const {type, data} = useActivityContext();
-    const {pie} = useLocalStorage(data);
+    const {type, pie, setPie} = useActivityContext();
+    useLocalStorage({pie, setPie});
     const {today, currentYear, currentMonth, currentWeek } = getCurrentDate();
-    
     return (
         <>
             <Card className="activity-section__wrapper">
@@ -27,9 +27,12 @@ const ActivityPie = () =>
                     </CardDescription>
                 </CardHeader>
                      
-                <CardContent className="pb-0">
-                    {pie.length!==0 ?  
-                           <SportMetrics data={pie}/>
+                <CardContent className="pb-9">
+                    {pie.length!==0 ?
+                            <>
+                                <ActivityDeletion pie={pie} setPie={setPie}/>  
+                                <SportMetrics data={pie}/>
+                            </>
                         : null
                     }
 
@@ -53,7 +56,7 @@ const ActivityPie = () =>
                                 <Legend 
                                     layout="horizontal"                                
                                     iconType="circle"
-                                    wrapperStyle={{marginTop:"5rem"}}
+                                    wrapperStyle={{marginTop:"7rem"}}
                                     verticalAlign="middle" 
                                     align="center"
                                 />

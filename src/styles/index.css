@@ -4,7 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-
 @theme {
     --radius: 0.6rem;    
     --text-xs: 0.75rem;
@@ -25,11 +24,14 @@
     --content-center: center;
     --content-block: block;
     --content-hidden: none;
+    --layouts-bg: rgba(36, 103, 138, 0.9);
 }
 
 body{
     font-family: "Inter", "Inter Placeholder", sans-serif;
     background: #BAE6FD;
+    position: relative;
+    min-height:100vh;
 }
 
 .form-activity__weight-label
@@ -55,7 +57,7 @@ body{
 {
     width: var(--w-200);
     display: grid;
-    align-items: center;
+    align-items: var(--content-center);
     grid-template-columns: repeat(4, minmax(0, 1fr));
     padding: var(--space-1) var(--space-5);
 }
@@ -138,17 +140,27 @@ body{
     position: sticky;
     z-index: 10;
     top:0;
-    background: rgba(30, 90, 113, 0.8);
+    background: var(--layouts-bg);
 }
 
 
 footer {
-    background: #1E5A71;
+    position: absolute;
+    bottom: 0;
+    background: var(--layouts-bg);
     width: var(--responsive);
     font-size: .875rem;
     line-height: 1.25rem;
     display:var(--flex);
     justify-content: var(--content-center);
+    padding: 1.3rem;
+}
+
+.activity-deletion__list
+{
+    width: 22rem;
+    margin: var(--space-auto);
+    padding: 0 var(--space-6);
 }
 
 .footer-title 
@@ -192,14 +204,10 @@ footer {
         max-width: var(--responsive);
     }
 }
-/*Tablets*/
-@media screen and (max-width: 800px) {
-    .footer-info
+/* Small devices */ 
+@media screen and (max-width: 430px) {
+    .activity-deletion__list
     {
-        text-align:var(--content-center);
-    }
-    .footer-info > img
-    {
-        margin:var(--space-auto);
+        width:var(--responsive);
     }
 }
