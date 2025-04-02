@@ -3,8 +3,8 @@ import { useLocalStorage } from "@/features/chart/hooks/useLocalStorage";
 import { Activities } from "@/layouts/navigation/Activities";
 export const DesktopMenu = () => 
 {
-    const {data} = useActivityContext();
-    const {pie} = useLocalStorage(data);
+    const {pie, setPie} = useActivityContext();
+    useLocalStorage({pie, setPie});
         
     return (
         <ul className="site-header__list">

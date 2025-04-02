@@ -6,8 +6,8 @@ import { Activities } from "./Activities";
 export const MobileMenu = () => 
 {
     const [showActivity, setShowActivity] = useState<boolean>(false);
-    const {data} = useActivityContext();
-    const {pie} = useLocalStorage(data);
+    const {pie, setPie} = useActivityContext();
+    useLocalStorage({pie, setPie});
 
     return (
         <ul className="navbar__mobile">

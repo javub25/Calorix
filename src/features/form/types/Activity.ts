@@ -14,7 +14,7 @@ export type ContextType = {
     type: string;
     setType: (type: string) => void;
     setPie: (updater: (oldSport: PieData) => PieData) => void;
-    data: PieData;
+    pie: PieData;
 }
 export type ActivityType = Pick<ContextType, "type" | "setType">
 

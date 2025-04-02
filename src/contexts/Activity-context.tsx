@@ -19,7 +19,7 @@ const ActivityProvider = ({children}: {children: React.ReactElement}) => {
     const {activity, setActivity} = useActivity();
     const {pie, setPie} = usePie();
 
-    const ActivityValues = {type: activity, setType: setActivity, setPie, data: pie};
+    const ActivityValues = {type: activity, setType: setActivity, setPie, pie};
 
     return (
         <ActivityContext.Provider value={ActivityValues}>
