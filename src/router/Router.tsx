@@ -13,7 +13,7 @@ export const Router = () =>
         <BrowserRouter>
             <Header />
                 <Suspense fallback={<Spinner/>}>
-                    <section className="px-5 pb-[11rem]">
+                    <section className="px-5 pb-[20rem]">
                         <Routes>
                             <Route path="/" element={<Form />} />
                             <Route path="/tus-actividades" element={<Pie />} />
