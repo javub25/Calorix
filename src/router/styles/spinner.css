@@ -5,7 +5,7 @@
     border-radius: 50%;
     display: inline-block;
     border: 4px solid transparent;
-    border-bottom-color: #DC2626;
+    border-bottom-color: #2563eb;
     animation: rotation 1s linear infinite;
   }
   .loader::after {
